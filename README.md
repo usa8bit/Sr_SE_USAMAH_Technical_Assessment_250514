@@ -10,6 +10,3 @@ Program ini merupakan skrip Python sederhana yang menghasilkan output tingkat ke
 ## Persyaratan
 
 Program ini membutuhkan Python versi 3.x
-
-```bash
-pip install -r requirements.txt
