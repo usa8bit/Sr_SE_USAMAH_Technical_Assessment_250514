@@ -1,24 +1,36 @@
-def tingkat_kemahiran_maksimal(N, A, B, M):
+def kemahiran_maksimal(N, M, A, B):
     lawan = list(zip(A, B))
     while True:
         kandidat_lawan = [x for x in lawan if x[0] <= M]
         if not kandidat_lawan:
             break
-        tambah_kekuatan = kandidat_lawan[0]
-        M += tambah_kekuatan[1]
-        lawan.remove(kandidat_lawan[0])
+        lawan_terbaik = max(kandidat_lawan, key = lambda x: x[1])
+        M += lawan_terbaik[1]
+        lawan.remove(lawan_terbaik)
     return M
-    print("Tingkat kemahiran maksimal yang akan di dapat", str(M))
 
-# N = 5
-# M = 9
-# A = [2, 3, 6, 7, 8]
-# B = [3, 4, 2, 2, 3]
-# print(tingkat_kemahiran_maksimal(N, A, B, M))
+# ====== MAIN PROGRAM ======
+def main():
+    # Input N dan M
+    N, M = map(int, input("Masukkan N dan M (dipisahkan spasi): ").split())
 
-N = input("Baris pertama dua buah bilangan N dan M (1<=N, M<= 100): ")
-M = input()
-A = list(input("Baris kedua N buah bilangan Ai (1<=Ai<=1000): ").split(","))
-B = list(input("Baris ketiga N buah bilangan Ai (1<=Ai<=1000): ").split(","))
+    # Input Ai
+    A = list(map(int, input(f"Masukkan {N} angka Ai (dipisahkan spasi): ").split()))
 
-tingkat_kemahiran_maksimal(N, A, B, M)
+    # Input Bi
+    B = list(map(int, input(f"Masukkan {N} angka Bi (dipisahkan spasi): ").split()))
+
+    # Validasi panjang input
+    if len(A) != N or len(B) != N:
+        print("Jumlah input Ai dan Bi harus sama dengan N!")
+        return
+
+    # Hitung hasil
+    hasil = kemahiran_maksimal(N, M, A, B)
+
+    # Output hasil
+    print("Tingkat kemahiran maksimal yang dicapai:", hasil)
+
+# Jalankan program
+if __name__ == "__main__":
+    main()
